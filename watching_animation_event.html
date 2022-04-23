@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<style type="text/css">
+		<!--
+			h1 {
+			  animation-duration: 3s;
+			  animation-name: slidein;
+			  animation-iteration-count: 3;
+			  animation-direction: nomal;
+			}
+			@-webkit-keyframes slidein {
+			  from {
+			    margin-left: 100%;
+			    width: 300%;
+			  }
+
+			  to {
+			    margin-left: 0%;
+			    width: 100%;
+			  }
+			}
+		-->
+		</style>
+
+	</head>
+	<body>
+		<h1 id="watchme">Watch me move</h1>
+		<p>
+		  This example shows how to use CSS animations to make <code>H1</code>
+		  elements move across the page.
+		</p>
+		<p>
+		  In addition, we output some text each time an animation event fires,
+		  so you can see them in action.
+		</p>
+		<ul id="output">
+		</ul>
+		
+		<script type="text/javascript">
+		
+			function listener(event) {
+			console.log('Hello');
+			  var l = document.createElement("li");
+			  switch(event.type) {
+			    case "animationstart":
+			      l.textContent = `Started: elapsed time is ${event.elapsedTime}`;
+			      break;
+			    case "animationend":
+			      l.textContent = `Ended: elapsed time is ${event.elapsedTime}`;
+			      break;
+			    case "animationiteration":
+			      l.textContent = `New loop started at time ${event.elapsedTime}`;
+			      break;
+			  }
+			  document.getElementById("output").appendChild(l);
+			}
+		
+			var element = document.getElementById("watchme");
+			element.addEventListener("animationstart", listener, false);
+			element.addEventListener("animationend", listener, false);
+			element.addEventListener("animationiteration", listener, false);
+
+			element.className = "slidein";
+		</script>		
+	</body>
+</html>
